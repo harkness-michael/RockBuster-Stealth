@@ -1,0 +1,13 @@
+Here is a Common Table Expression.
+
+SELECT SUM(amount)		
+FROM payment		total revenue
+		
+SELECT SUM(p.amount) / COUNT(DISTINCT c.customer_id) AS average_revenue_per_customer		
+FROM payment p		
+JOIN customer c ON p.customer_id = c.customer_id;		
+		
+		average per customer
+		
+SELECT COUNT(DISTINCT country)		
+FROM country		number of countries
