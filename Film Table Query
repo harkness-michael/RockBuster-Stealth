@@ -1,0 +1,23 @@
+	
+SELECT min(release_year) AS "Min Release Year",	
+	max(release_year) AS "Max Release Year",
+	avg(release_year) AS "Average Release Year",
+	count (distinct release_year) AS "Number of Release Years",
+	min(rental_duration) AS "Min Rental Duration",
+	max(rental_duration) AS "Max Rental Duration",
+	avg(rental_duration) AS "Average Rental Duration",
+	count(distinct rental_duration) AS "Number of Rental Durations",
+	min(rental_rate) AS "Min Rental Rate",
+	max(rental_rate) AS "Max Rental Rate",
+	avg(rental_rate) AS "Average Rental Rate",
+	count(distinct rental_rate) AS "Number of Rental Rates",
+	min(length) AS "Min Length",
+	max(length) AS "Max Length",
+	avg(length) AS "Average Length",
+	count(distinct length) AS "Number of Lengths",
+	min(replacement_cost) AS "Min Replacement Cost",
+	max(replacement_cost) AS "Max Replacement Cost",
+	avg(replacement_cost) AS "Average Replacement Cost",
+	MODE() WITHIN GROUP (ORDER BY rating) AS "Most Common Rating",
+count(*) AS "Count of Rows"	
+FROM film	
