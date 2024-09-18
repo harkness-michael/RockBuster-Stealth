@@ -1,2 +1,2 @@
 # SQL_Queries
-#### This is a collection of all my SQL Queries. Enjoy!
+#### This is a collection of my SQL Queries. Enjoy!
