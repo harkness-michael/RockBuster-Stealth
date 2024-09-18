@@ -1,0 +1,52 @@
+SELECT 
+    c.customer_id, 
+    c.first_name, 
+    c.last_name, 
+    co.country, 
+    ct.city, 
+    SUM(p.amount) AS total_amount_paid
+FROM 
+    customer c
+JOIN 
+    payment p ON c.customer_id = p.customer_id
+JOIN 
+    address a ON c.address_id = a.address_id
+JOIN 
+    city ct ON a.city_id = ct.city_id
+JOIN 
+    country co ON ct.country_id = co.country_id
+WHERE 
+    (co.country_id, ct.city_id, c.customer_id) IN (
+        SELECT 
+            co2.country_id, 
+            ct2.city_id, 
+            c2.customer_id
+        FROM 
+            customer c2
+        JOIN 
+            payment p2 ON c2.customer_id = p2.customer_id
+        JOIN 
+            address a2 ON c2.address_id = a2.address_id
+        JOIN 
+            city ct2 ON a2.city_id = ct2.city_id
+        JOIN 
+            country co2 ON ct2.country_id = co2.country_id
+        GROUP BY 
+            co2.country_id, 
+            ct2.city_id, 
+            c2.customer_id
+        ORDER BY 
+            SUM(p2.amount) DESC
+        LIMIT 10
+    )
+GROUP BY 
+    c.customer_id, 
+    c.first_name, 
+    c.last_name, 
+    co.country, 
+    ct.city
+ORDER BY 
+    co.country, 
+    ct.city, 
+    total_amount_paid DESC
+LIMIT 5;
